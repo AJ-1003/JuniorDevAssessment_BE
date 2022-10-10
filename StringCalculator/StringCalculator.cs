@@ -21,9 +21,9 @@ namespace StringCalculator_CL
                 .Select(n => int.Parse(n))
                 .ToList();
 
-            CheckForNegatives(numbers);
+            EnsureNonNegatives(numbers);
 
-            numbers = CheckForMaxAllowedNumber(numbers);
+            numbers = EnsureMaxAllowedNumberNotExceeded(numbers);
 
             return numbers.Sum();
         }
@@ -84,7 +84,7 @@ namespace StringCalculator_CL
             return input;
         }
 
-        public void CheckForNegatives(List<int> input)
+        public void EnsureNonNegatives(List<int> input)
         {
             var negativeNumbers = new List<int>();
 
@@ -105,7 +105,7 @@ namespace StringCalculator_CL
             return;
         }
 
-        public List<int> CheckForMaxAllowedNumber(List<int> input)
+        public List<int> EnsureMaxAllowedNumberNotExceeded(List<int> input)
         {
             return input.Where(n => n <= _maxAllowedNumber).ToList();
         }

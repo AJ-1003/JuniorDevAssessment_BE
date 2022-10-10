@@ -6,56 +6,105 @@ namespace LinkedList_Test
 {
     public class Tests
     {
-        private CustomLinkedList _linkedList;
+        private SinglyLinkedList<string> _linkedList;
 
         [SetUp]
         public void Setup()
         {
             // Arrange
-            _linkedList = new CustomLinkedList();
+            _linkedList = new SinglyLinkedList<string>();
         }
 
         [Test]
-        [TestCase(10, "Node")]
-        public void Add_Node_Into_List(int position, object o)
+        [TestCase("Node")]
+        public void Add_As_First_Node_Into_List(string element)
         {
             // Act
-            _linkedList.Add(position, o);
+            _linkedList.addFirst(element);
 
             // Assert
-            _linkedList.ShouldNotBe(null);
-            _linkedList.Length.ShouldBe(1);
+            _linkedList.length().ShouldBe(1);
+        }
+
+        [Test]
+        [TestCase("Node", 5)]
+        public void Add_Node_Into_List_At_Position(string element, int position)
+        {
+            // Act
+            _linkedList.addAny(element, position);
+
+            // Assert
+            _linkedList.length().ShouldBe(0);
+        }
+
+        [Test]
+        [TestCase("Node")]
+        public void Add_As_Last_Node_Into_List(string element)
+        {
+            // Act
+            _linkedList.addLast(element);
+
+            // Assert
+            _linkedList.length().ShouldBe(1);
+        }
+
+        [Test]
+        public void Delete_First_Node_From_List()
+        {
+            // Act
+            _linkedList.addFirst("Node");
+            _linkedList.removeFirst();
+
+            // Assert
+            _linkedList.length().ShouldBe(0);
         }
 
         [Test]
         [TestCase(1)]
-        public void Delete_Node_From_List(int position)
+        public void Delete_Node_From_List_At_Position(int position)
         {
             // Act
-            _linkedList.Add(1, "Node 1");
-            _linkedList.Remove(position);
+            _linkedList.addFirst("Node 1");
+            _linkedList.addLast("Node 2");
+            _linkedList.addLast("Node 3");
+            _linkedList.addLast("Node 4");
+            _linkedList.addLast("Node 5");
+
+            _linkedList.removeAny(position);
 
             // Assert
-            _linkedList.Length.ShouldBe(0);
+            _linkedList.length().ShouldBe(4);
+        }
+
+        [Test]
+        public void Delete_Last_Node_From_List()
+        {
+            _linkedList.addFirst("Node 1");
+            _linkedList.addLast("Node 2");
+            _linkedList.addLast("Node 3");
+            _linkedList.addLast("Node 4");
+            _linkedList.addLast("Node 5");
+
+            _linkedList.removeLast();
+            _linkedList.removeLast();
+
+            // Assert
+            _linkedList.length().ShouldBe(3);
         }
 
         [Test]
         public void Print_Node_List()
         {
             // Act
-            _linkedList.Add(0, "Node 1");
-            _linkedList.Add(1, 500);
-            _linkedList.Add(2, "Node 3");
-            _linkedList.Add(3, "Node 4");
-            _linkedList.Add(4, "Node 5");
-            _linkedList.Add(5, 250);
-            _linkedList.Add(6, "Node 7");
-            _linkedList.Add(7, "Node 8");
-            _linkedList.Add(8, "Node 9");
-            _linkedList.PrintList();
+            _linkedList.addFirst("Node 1");
+            _linkedList.addLast("Node 2");
+            _linkedList.addLast("Node 3");
+            _linkedList.addLast("Node 4");
+            _linkedList.addLast("Node 5");
+            _linkedList.display();
 
             // Assert
-            _linkedList.Length.ShouldBe(9);
+            _linkedList.length().ShouldBe(5);
         }
     }
 }

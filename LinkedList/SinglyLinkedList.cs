@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace LinkedList_CL
 {
-    public class DevLinkedList<T>
+    public class SinglyLinkedList<T>
     {
-        private DevNode<T> head;
-        private DevNode<T> tail;
+        private Node<T> head;
+        private Node<T> tail;
         private int size;
 
-        public DevLinkedList()
+        public SinglyLinkedList()
         {
             head = null;
             tail = null;
@@ -32,7 +32,7 @@ namespace LinkedList_CL
 
         public void addFirst(T element)
         {
-            var newest = new DevNode<T>(element, null);
+            var newest = new Node<T>(element, null);
 
             if (isEmpty())
             {
@@ -56,7 +56,7 @@ namespace LinkedList_CL
                 return;
             }
 
-            var newest = new DevNode<T>(element, null);
+            var newest = new Node<T>(element, null);
             var p = head;
             var i = 1;
 
@@ -74,7 +74,7 @@ namespace LinkedList_CL
 
         public void addLast(T element)
         {
-            var newest = new DevNode<T>(element, null);
+            var newest = new Node<T>(element, null);
 
             if (isEmpty())
             {
@@ -166,6 +166,11 @@ namespace LinkedList_CL
 
             while (p != null)
             {
+                if (p.next == null)
+                {
+                    Debug.WriteLine($"{p.element}");
+                }
+
                 Debug.WriteLine($"{p.element} --> ");
                 p = p.next;
             }

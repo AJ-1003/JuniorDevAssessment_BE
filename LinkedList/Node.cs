@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace LinkedList_CL
 {
-    public class DevNode<T>
+    public class Node<T>
     {
         public T element;
-        public DevNode<T> next;
+        public Node<T> next;
 
-        public DevNode(T e, DevNode<T> n)
+        public Node(T e, Node<T> n)
         {
             element = e;
             next = n;
